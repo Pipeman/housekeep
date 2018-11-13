@@ -24,11 +24,15 @@ describe('ApiService', () => {
     });
 
     it('should throw when an invalid duration is passed', () => {
-      expect(() => service.getAvailability(null)).toThrowError('There is no duration specified');
+      service.getAvailability(null).subscribe(() => {}, (err: any) => {
+        expect(err).toEqual(new Error('There is no duration specified'));
+      });
     });
 
     it('should return the availability mock', () => {
-      expect(service.getAvailability({})).toEqual(availabilityMock);
+      service.getAvailability({}).subscribe((data: any) => {
+        expect(data).toEqual(availabilityMock);
+      });
     });
   });
 
@@ -43,16 +47,20 @@ describe('ApiService', () => {
     });
 
     it('should throw when an invalid booking is passed', () => {
-      expect(() => service.book(null)).toThrowError('There is no booking specified');
+      service.book(null).subscribe(() => {}, (err: any) => {
+        expect(err).toEqual(new Error('There is no booking specified'));
+      });
     });
 
     it('should return the booking response mock', () => {
       const bookingRequest: IBookingRequest = {
-        day: "",
-        start: "",
-        end: "",
-      }
-      expect(service.book(bookingRequest)).toEqual(bookingMock);
+        day: '',
+        start: '',
+        end: '',
+      };
+      service.book(bookingRequest).subscribe((data: any) => {
+        expect(data).toEqual(bookingMock);
+      });
     });
   });
 });

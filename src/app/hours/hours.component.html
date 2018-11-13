@@ -1,0 +1,24 @@
+<div class="duration">
+  <h4 class="duration__title">How long will you need the cleaner for?</h4>
+  <mat-form-field class="duration__form">
+    <mat-select
+      placeholder="Hours"
+      [formControl]="hoursControl"
+      required
+      aria-required="true"
+      aria-label="Hours you need the cleaner"
+      (selectionChange)="onChange($event)"
+    >
+      <mat-option
+        *ngFor="let hour of hoursOptions"
+        [value]="hour.value"
+      >{{hour.description}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="hoursControl.hasError('required')">Please select a value from the dropdown</mat-error>
+  </mat-form-field>
+  <a
+    routerLink="/availability"
+    mat-raised-button
+    color="primary"
+  >Check availability</a>
+</div>

@@ -1,0 +1,9 @@
+.duration {
+  display: flex;
+  flex-direction: column;
+
+  &__title, &__form {
+    align-content: center;
+  }
+}
+

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import availabilityMock from '../mocks/availability';
 import bookingMock from '../mocks/booking';
+import { Observable, of, throwError } from 'rxjs';
 
 export interface IWeeklyAvailability {
   weekBeginning: string;
@@ -32,20 +33,19 @@ export interface IBookingResponse {
   providedIn: 'root'
 })
 export class ApiService {
-
-  getAvailability(duration): IWeeklyAvailability {
+  getAvailability(duration): Observable<IWeeklyAvailability> {
     if (!duration) {
-      throw new Error('There is no duration specified');
+      return throwError(new Error('There is no duration specified'));
     }
-    
-    return availabilityMock;
+
+    return of(availabilityMock);
   }
 
-  book(booking: IBookingRequest): IBookingResponse {
+  book(booking: IBookingRequest): Observable<IBookingResponse> {
     if (!booking) {
-      throw new Error('There is no booking specified');
+      return throwError(new Error('There is no booking specified'));
     }
 
-    return bookingMock;
+    return of(bookingMock);
   }
 }

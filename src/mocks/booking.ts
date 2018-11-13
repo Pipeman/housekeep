@@ -1,5 +1,5 @@
 export default {
-  cleanerName: "Jason",
-  price: "25",
-  currency: "GBP",
+  cleanerName: 'Jason',
+  price: '25',
+  currency: 'GBP',
 };
