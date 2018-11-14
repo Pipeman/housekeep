@@ -3,22 +3,25 @@
   <mat-form-field class="duration__form">
     <mat-select
       placeholder="Hours"
-      [formControl]="hoursControl"
+      [formControl]="durationControl"
       required
       aria-required="true"
       aria-label="Hours you need the cleaner"
       (selectionChange)="onChange($event)"
     >
       <mat-option
-        *ngFor="let hour of hoursOptions"
+        *ngFor="let hour of durationOptions"
         [value]="hour.value"
       >{{hour.description}}</mat-option>
     </mat-select>
-    <mat-error *ngIf="hoursControl.hasError('required')">Please select a value from the dropdown</mat-error>
+    <mat-error *ngIf="durationControl.hasError('required')">Please select a value from the dropdown</mat-error>
   </mat-form-field>
-  <a
+  <button
     routerLink="/availability"
+    qa="duration__button"
     mat-raised-button
     color="primary"
-  >Check availability</a>
+    (click)="onClickAvailability()"
+    [disabled]="durationControl.hasError('required')"
+  >Check availability</button>
 </div>

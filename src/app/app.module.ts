@@ -6,12 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule, MatButtonModule } from '@angular/material';
-import { HoursComponent } from './hours/hours.component';
+import { DurationComponent } from './duration/duration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HoursComponent
+    DurationComponent
   ],
   imports: [
     BrowserModule,
