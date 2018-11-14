@@ -16,7 +16,7 @@ export class StateService {
     this._duration = Number(duration);
   }
 
-  get availability() {
+  get availability(): IWeeklyAvailability {
     return this._availability;
   }
 

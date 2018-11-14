@@ -5,13 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSelectModule, MatButtonModule } from '@angular/material';
+import { MatSelectModule, MatButtonModule, MatListModule, MatIconModule } from '@angular/material';
 import { DurationComponent } from './duration/duration.component';
+import { AvailabilityComponent } from './availability/availability.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DurationComponent
+    DurationComponent,
+    AvailabilityComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,9 @@ import { DurationComponent } from './duration/duration.component';
     MatSelectModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

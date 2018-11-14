@@ -1,0 +1,16 @@
+<mat-list *ngFor="let dailyAvailability of availability.days">
+    <h3 mat-subheader>{{ dailyAvailability.day | date:'E MMM d, y' }}</h3>
+    <mat-list-item *ngFor="let timeAvailability of dailyAvailability.availability">
+      <mat-icon mat-list-icon>watch</mat-icon>
+      <h4 mat-line>From: {{ timeAvailability.start }}</h4>
+      <h4 mat-line>End: {{ timeAvailability.end }}</h4>
+      <div mat-line>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="checkIfDurationFits(timeAvailability)"
+          >Select</button>
+      </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>

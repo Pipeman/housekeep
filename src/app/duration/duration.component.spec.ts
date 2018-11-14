@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Router } from '@angular/router';
 
 import { DurationComponent } from './duration.component';
 import { StateService } from '../state.service';
@@ -31,7 +30,6 @@ describe('DurationComponent', () => {
   let titleElement: HTMLElement;
   let stateServiceSpy: StateServiceSpy;
   let stateServiceGetDurationSpy;
-  let stateServiceGetAvailabilitySpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -63,12 +61,11 @@ describe('DurationComponent', () => {
     fixture = TestBed.createComponent(DurationComponent);
     stateServiceSpy = fixture.debugElement.injector.get(StateService) as any;
     stateServiceGetDurationSpy = spyOnProperty(stateServiceSpy, 'duration', 'get');
-    stateServiceGetAvailabilitySpy = spyOnProperty(stateServiceSpy, 'availability', 'get');
 
     component = fixture.componentInstance;
     spyOn(component, 'onChange').and.callThrough();
     spyOn(component, 'onClickAvailability').and.callThrough();
-    
+
     fixture.detectChanges();
     titleElement = fixture.debugElement.query(By.css('h4')).nativeElement;
   });
@@ -162,7 +159,7 @@ describe('DurationComponent', () => {
     });
   });
 
-  fdescribe('button', () => {
+  describe('button', () => {
     let button: HTMLElement;
     let apiServiceSpy: ApiService;
     let apiServiceGetAvailabilitySpy;
@@ -204,31 +201,31 @@ describe('DurationComponent', () => {
       button = fixture.debugElement.query(By.css('[qa=duration__button]')).nativeElement;
     }));
 
-    it("should be present", () => {
+    it('should be present', () => {
       expect(button).toBeTruthy();
     });
 
-    it("should have the correct text", () => {
+    it('should have the correct text', () => {
       expect(button.textContent).toBe('Check availability');
     });
 
-    describe("when no duration was selected", () => {
-      it("should be disabled", () => {
+    describe('when no duration was selected', () => {
+      it('should be disabled', () => {
         expect(button.getAttribute('disabled')).toBe('');
       });
 
-      describe("when clicked", () => {
+      describe('when clicked', () => {
         beforeEach(() => {
           button.click();
         });
-        
-        it("should not call onClickAvailability", () => {
+
+        it('should not call onClickAvailability', () => {
           expect(component.onClickAvailability).not.toHaveBeenCalled();
         });
       });
     });
 
-    describe("when a duration is set", () => {
+    describe('when a duration is set', () => {
       let stateServiceSetAvailabilitySpy;
 
       beforeEach(() => {
@@ -237,25 +234,25 @@ describe('DurationComponent', () => {
         fixture.detectChanges();
       });
 
-      it("should be disabled", () => {
+      it('should be disabled', () => {
         expect(button.getAttribute('disabled')).toBeNull();
       });
 
-      describe("when clicked", () => {
+      describe('when clicked', () => {
         beforeEach(() => {
           button.click();
           fixture.detectChanges();
         });
-        
-        it("should call the onClickAvailability", () => {
+
+        it('should call the onClickAvailability', () => {
           expect(component.onClickAvailability).toHaveBeenCalled();
         });
-  
-        it("should call availability service with the selected value", () => {
+
+        it('should call availability service with the selected value', () => {
           expect(apiServiceGetAvailabilitySpy).toHaveBeenCalledWith(component.durationControl.value);
         });
 
-        it("should call state service to set the availability", () => {
+        it('should call state service to set the availability', () => {
           expect(stateServiceSetAvailabilitySpy).toHaveBeenCalledWith(availabilityMock);
         });
       });

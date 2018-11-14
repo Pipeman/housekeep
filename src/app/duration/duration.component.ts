@@ -27,9 +27,7 @@ export class DurationComponent implements OnInit {
   }
 
   private onAvailabilityReceived(availability: IWeeklyAvailability) {
-    console.log("cane", availability);
     this.stateService.availability = availability;
-    console.log("cane2", this.stateService.availability);
   }
 
   ngOnInit() {
